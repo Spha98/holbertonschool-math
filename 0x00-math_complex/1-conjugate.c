@@ -1,4 +1,4 @@
-#include "main.h"
+#include "holberton.h"
 
 /**
  * conjugate - Returns the conjugate of an imaginary number
