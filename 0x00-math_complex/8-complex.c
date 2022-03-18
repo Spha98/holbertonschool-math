@@ -1,9 +1,3 @@
-/*
-* 8-complex.c - update complex based on modulus and arguments
-* Author: Danisile Jiyane
-* Date: March 15, 2022
-*/
-
 #include "holberton.h"
 #include <math.h>
 

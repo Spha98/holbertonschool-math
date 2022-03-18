@@ -1,9 +1,3 @@
-/*
-* 3-argument.c - Modulus of complex
-* Author: Ernest Mqcina
-* Date: March 18, 2022
-*/
-
 #include "holberton.h"
 #include <math.h>
 
