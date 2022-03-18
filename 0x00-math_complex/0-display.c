@@ -4,7 +4,7 @@
 * Date: March 18, 2022
 */
 
-#include "main.h"
+#include "holberton.h"
 
 /**
 * display_complex_number - Display complex number
