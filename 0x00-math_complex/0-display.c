@@ -1,38 +1,29 @@
-/*
-* 0-display.c
-* Author: Ernest Mqcina
-* Date: March 18, 2022
-*/
-
-#include "main.h"
+#include "holberton.h"
 
 /**
-* display_complex_number - Display complex number
-* @c: Complex number
-*/
+ * display_complex_number - Prints the representation of a complex number
+ *
+ * @c: complex number
+ * Return: Void
+ */
 
 void display_complex_number(complex c)
 {
-	if (c.re == 0)
+  printf("%.9g", c.re);
+  if (c.im)
+    {
+      if (c.im > 0)
 	{
-		if (c.ib < 0)
-			printf("- %.9gi\n", c.ib * (-1));
-		else if (c.ib == 0)
-			printf("0\n");
-		else
-			printf("%.9gi\n", c.ib);
+	  printf(" + ");
 	}
-	else
+      else
 	{
-		if (c.ib < -1)
-			printf("%.9g - %.9gi\n", c.re, c.ib * (-1));
-		else if (c.ib == -1)
-			printf("%.9g - i\n", c.re);
-		else if (c.ib == 0)
-			printf("%.9g\n", c.re);
-		else if (c.ib == 1)
-			printf("%.9g + i\n", c.re);
-		else
-			printf("%.9g + %.9gi\n", c.re, c.ib);
+	  printf(" - ");
+	  c.im *= -1;
 	}
+      if (c.im != 1 && c.im != -1)
+	printf("%.9g", c.im);
+      printf("i");
+    }
+  printf("\n");
 }

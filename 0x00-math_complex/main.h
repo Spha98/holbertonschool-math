@@ -11,7 +11,7 @@
 typedef struct complex
 {
 	double re;
-	double ib;
+	double im;
 } complex;
 
 void display_complex_number(complex c);
