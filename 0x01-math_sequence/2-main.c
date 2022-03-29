@@ -7,5 +7,4 @@ int mandelbrot(void);
 int main(void)
 {
 mandelbrot();
-
 }
