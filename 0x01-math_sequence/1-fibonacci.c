@@ -1,9 +1,3 @@
-/*
-* 1-fibonacci.c - prints fibonacci secuence
-* Author: Rodrigo Zárate Algecira
-* Date: August 06, 2021
-*/
-
 #include "main.h"
 
 /**
