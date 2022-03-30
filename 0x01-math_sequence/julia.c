@@ -1,47 +1,122 @@
-#include <stdio.h>
+/*
+* julia.c - Prints julia set into PGM file
+* Author: Rodrigo Zárate Algecira
+* Date: August 16, 2021
+*/
+
+#include "julia.h"
 
 /**
- * main - mandelbrot
- * Return: 0
- */
-int main(void)
-{
-	int A, B, i, z = 100;
-	int w, h;
-	double a, b, x, y, r;
-	double n = 100;
-	FILE *pgmimg;
+* add - add complex
+* @a: complex
+* @b: complex
+* Return: complex
+*/
 
-	w = z * 4, h = z * 4;
-	printf("Holberton School\n");
-	printf("Mandelbrot's set image created in mandelbrot.pgm file\n");
-	pgmimg = fopen("mandelbrot.pgm", "wb");
-	fprintf(pgmimg, "P2\n");
-	fprintf(pgmimg, "%d %d\n", w, h);
-	fprintf(pgmimg, "255\n");
-	for (B = 0; B < 4 * n; B++)
+complex add(complex a, complex b)
+{
+	complex c;
+
+	c.x = a.x + b.x;
+	c.y = a.y + b.y;
+	return (c);
+}
+
+/**
+* sqr - sqr complex
+* @a: complex
+* Return: complex
+*/
+
+complex sqr(complex a)
+{
+	complex c;
+
+	c.x = a.x * a.x - a.y * a.y;
+	c.y = 2 * a.x * a.y;
+	return (c);
+}
+
+/**
+* modulus - modulus of complex
+* @a: complex
+* Return: complex
+*/
+
+double modulus(complex a)
+{
+	return (sqrt(a.x * a.x + a.y * a.y));
+}
+
+/**
+* drawp - detremine point
+* @width: canva w
+* @height: canva h
+* @radius: distance
+* @x: int
+* @y: int
+* Return: complex
+*/
+
+complex drawp(int width, int height, double radius, int x, int y)
+{
+	complex c;
+	int l = (width < height) ? width : height;
+
+	c.x = 2 * radius * (x - width / 2.0) / l;
+	c.y = 2 * radius * (y - height / 2.0) / l;
+
+	return (c);
+}
+
+/**
+* julia - do the julia
+* Return: void
+* @width: canva w
+* @height: canva h
+* @c: complex
+* @radius: distance factor
+* @n: iterations
+*/
+
+void julia(int width, int height, complex c, double radius, int n)
+{
+int x, y, i;
+complex z0, z1;
+FILE *pgmimg;
+
+printf("Holberton School\n");
+printf("Julia's set image created in julia.pgm file\n\n");
+printf("Test: ./julia 800 800 0 0 1.4 60 for circle\n");
+printf("Test: ./julia 800 800 -0.50 0.55 1.4 60 for tardigrade like\n");
+printf("Test: ./julia 1200 1200 -0.646 0.408 1.3 100 for Unespected beauty\n");
+printf("Test: ./julia 1200 1200 -0.70 0.26 1.3 100 for More beauty\n");
+pgmimg = fopen("julia.pgm", "wb");
+fprintf(pgmimg, "P2 \n");
+fprintf(pgmimg, "%d %d \n", width, height);
+fprintf(pgmimg, "255 \n");
+
+	for (x = 0; x < width; x++)
 	{
-		b = 2 - (B / n);
-		for (A = 0; A < 4 * n; A++)
+		for (y = 0; y < height; y++)
 		{
-			a = -2 + (A / n);
-			x = 0;
-			y = 0;
-			for (i = 1; i <= 1024; i++)
+		z0 = drawp(width, height, radius, x, y);
+			for (i = 1; i <= n; i++)
 			{
-				r = x;
-				x = (x * x) - (y * y) + a;
-				y = (2 * r * y) + b;
-				if ((x * x) + (y * y) > 4)
+				z1 = add(sqr(z0), c);
+				if (modulus(z1) > radius)
+				{
+					fprintf(pgmimg, " 16 ");
 					break;
+				}
+				z0 = z1;
 			}
-			if (i == 1025)
-				fprintf(pgmimg, "255 ");
-			else
-				fprintf(pgmimg, "20 ");
+			if (i > n)
+			{
+				fprintf(pgmimg, " 255 ");
+			}
 		}
-		fprintf(pgmimg, "\n");
+	fprintf(pgmimg, "\n");
 	}
-	fclose(pgmimg);
-	return (0);
+fclose(pgmimg);
 }
