@@ -1,3 +1,9 @@
+/*
+* 1-simpson.c - simpson method
+* Author: Ernest Mqcina
+* Date: April 11, 2022
+*/
+
 #define f(x) (1 / (1 + x * x))
 #include <stdio.h>
 #include <stdlib.h>

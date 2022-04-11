@@ -1,3 +1,9 @@
+/*
+* 0-rectangle.c - rectangle_method
+* Author: Ernest Mqcina
+* Date: April 11, 2022
+*/
+
 #include <stdio.h>
 #include <math.h>
 
