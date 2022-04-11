@@ -1,16 +1,26 @@
 #include <stdio.h>
+#include <math.h>
 #include "euler.h"
 
-int main(void)
+/**
+ *Euler - euler method
+ *@euler: path
+ *@name: name
+ *@x0: double
+ *@y0: double
+ *@T: double
+ *@n: int 
+ */
+void Euler(FILE *euler, char *name, double x0, double y0, double T, int n)
 {
-double a, b, solution;
-int steps;
+	euler = fopen("C://program.txt","name");
+	x0 = 2 * (T/n)
+	if (euler == NULL)
+	{
+		printf("Error!");
+		exit(1);
+	}
 
-a = 0.03;
-b = 1.4;
-steps = 7;
-
-solution = euler_method(a, b, steps);
-printf("solution:%lf \n",solution);
-return (0);
+	fprintf(euler, "%d",x0);
+	fclose(euler);
 }
